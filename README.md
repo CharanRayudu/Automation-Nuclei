@@ -6,7 +6,7 @@
 
 ### Disclaimer!!!!
 
-1.) Firstly , we must change the path of the directory. You can do that by:
+1.) Firstly , we must change the system's directory. You can do that by:
 
 nano vps.sh
 
