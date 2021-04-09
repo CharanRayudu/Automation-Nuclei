@@ -14,7 +14,7 @@
 
 
 ### Prerequisites
-    <a> Golang, Subfinder, AssetFinder, Amass, Shufffledns, httpx, Nuclei </a>
+     Golang, Subfinder, AssetFinder, Amass, Shufffledns, httpx, Nuclei 
 
 ### Installation & Usage
 
