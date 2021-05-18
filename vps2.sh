@@ -9,6 +9,7 @@ if [ ! -d "$1" ]; then
         touch /home/andr0idh4ppi3r/Recon/$1/$1.txt
 fi
 
+findomain -q -t $1 | tee -a /home/andr0idh4ppi3r/Recon/$1/findomain.txt
 subfinder -d $1 -o /home/andr0idh4ppi3r/Recon/$1/subfinder.txt
 assetfinder -subs-only $1 | tee /home/andr0idh4ppi3r/Recon/$1/assetfinder.txt
 amass enum -passive -norecursive -noalts -d $1 -o /home/andr0idh4ppi3r/Recon/$1/amass.txt
