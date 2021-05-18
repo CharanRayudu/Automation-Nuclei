@@ -1,4 +1,5 @@
 
+
 #!/bin/bash
 
 
@@ -9,11 +10,14 @@ if [ ! -d "$1" ]; then
 fi
 
 subfinder -d $1 -o /home/andr0idh4ppi3r/Recon/$1/subfinder.txt
-assetfinder -subs-only $1 | tee /home/andr0idh4ppi3r/Recon/$1/asset.com
+assetfinder -subs-only $1 | tee /home/andr0idh4ppi3r/Recon/$1/assetfinder.txt
 amass enum -passive -norecursive -noalts -d $1 -o /home/andr0idh4ppi3r/Recon/$1/amass.txt
 shuffledns -d $1 -w /usr/share/seclists/Discovery/DNS/deepmagic.com-prefixes-top500.txt -r resolvers.txt -o /home/andr0idh4ppi3r/Recon/$1/shuffledns.txt
 cat /home/andr0idh4ppi3r/Recon/$1/*.txt > /home/andr0idh4ppi3r/Recon/$1/all.txt
-shuffledns -list /home/andr0idh4ppi3r/Recon/$1/all.txt -r resolvers.txt -o /home/andr0idh4ppi3r/Recon/$1/$1.txt
-cat /home/andr0idh4ppi3r/Recon/$1/$1.txt | httpx -o /home/andr0idh4ppi3r/Recon/$1/$1httpx.txt
-cat /home/andr0idh4ppi3r/Recon/$1/$1httpx.txt | nuclei -t ~/nuclei-templates/
-rm -fr /home/andr0idh4ppi3r/Recon/$1/$1.txt
+shuffledns -list /home/andr0idh4ppi3r/Recon/$1/all.txt -r resolvers.txt -o /home/andr0idh4ppi3r/Recon/$1/listed.txt
+sort -u /home/andr0idh4ppi3r/Recon/$1/listed.txt > /home/andr0idh4ppi3r/Recon/$1/$1.txt
+httpx -follow-host-redirects -l /home/andr0idh4ppi3r/Recon/$1/$1.txt | tee -a /home/andr0idh4ppi3r/Recon/$1/$1httpx.txt
+sort -u /home/andr0idh4ppi3r/Recon/$1/$1httpx.txt | tee -a /home/andr0dh4ppi3r/Recon/$1/$1httpx.txt
+nuclei -l /home/andr0idh4ppi3r/Recon/$1/$1httpx.txt -t ~/nuclei-templates/
+rm -rf /home/andr0idh4ppi3r/Recon/$1/all.txt
+rm -rf /home/andr0idh4ppi3r/Recon/$1/listed.txt
