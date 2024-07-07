@@ -19,19 +19,15 @@
 ### Installation & Usage
 
 ### For vps.sh
-```
+```bash
 git clone https://github.com/CharanRayudu/Automation-Nuclei.git
-
 cd Automation-Nuclei
-
 chmod +x vps.sh
-
 ./vps.sh <example.com>
 ```
 ### For vps2.sh
-```
+```bash
 chmod +x vps2.sh
-
 ./vps2.sh <example.com>
 ```
 
